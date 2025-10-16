@@ -1,59 +1,63 @@
 <ng-container>
     <div class="my-10 mx-10">
         <p class="text-semibold text-xl mb-3">Employee Dashboard</p>
-        <div class=" flex gap-4">
-            <label class="input">
-                <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <g
-                    stroke-linejoin="round"
-                    stroke-linecap="round"
-                    stroke-width="2.5"
-                    fill="none"
-                    stroke="currentColor"
-                    >
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <path d="m21 21-4.3-4.3"></path>
+        <div class="flex flex-wrap items-center gap-4 w-full">
+            <label class="input flex-1 min-w-[200px] flex items-center gap-2 border rounded-md px-3 py-2">
+                <svg class="h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                    <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none"
+                        stroke="currentColor">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.3-4.3"></path>
                     </g>
                 </svg>
-                <input type="search" required placeholder="Search by name or email..." />
+                <input type="search" required placeholder="Search by name or email..."
+                    class="w-full bg-transparent outline-none text-sm" />
             </label>
 
-            <select class="select">
+            <select class="select w-full sm:w-auto min-w-[180px] border rounded-md px-3 py-2">
                 <option disabled selected>Filter by Department</option>
                 <option>HR</option>
                 <option>Engineering</option>
                 <option>Sales</option>
                 <option>Marketing</option>
             </select>
-            
-            <select class="select">
+
+            <select class="select w-full sm:w-auto min-w-[150px] border rounded-md px-3 py-2">
                 <option disabled selected>Sort By</option>
                 <option>Name</option>
                 <option>Date of joining</option>
             </select>
 
-            <div class="tooltip" data-tip="Export CSV">
-                <div tabindex="0" role="button" class="btn btn-circle">
-                    <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                            <polyline points="7 10 12 15 17 10"/>
-                            <line x1="12" y1="15" x2="12" y2="3"/>
-                        </svg>                    
-                    </div>
+            <div class="tooltip w-full sm:w-auto flex justify-center sm:justify-start" data-tip="Export CSV">
+                <div tabindex="0" role="button"
+                    class="btn btn-circle border border-gray-200 hover:bg-gray-100 flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="7 10 12 15 17 10" />
+                        <line x1="12" y1="15" x2="12" y2="3" />
+                    </svg>
                 </div>
             </div>
 
-            <button onclick="my_modal_3.showModal()" class="btn bg-[#5EBB2B] text-white border-[#4eaa0c]">
+            <button onclick="my_modal_3.showModal()"
+                class="btn bg-[#5EBB2B] hover:bg-[#4eaa0c] text-white border-[#4eaa0c] w-full sm:w-auto">
                 Add new employee
             </button>
         </div>
 
-        <app-add-employee></app-add-employee>
+        <app-add-employee
+            #addEmployeeComp
+            (getEmployees)="handleGetEmployee()"
+        ></app-add-employee>
 
         <div class="mt-5">
-            <app-employee-list></app-employee-list>
+            <app-employee-list
+                [employeeLists]="employeeList"
+                (editEmployeeEvent)="handleEditEmployee($event)"
+                (refreshList)="handleGetEmployee()"
+            ></app-employee-list>
         </div>
     </div>
 </ng-container>

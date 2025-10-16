@@ -1,28 +1,58 @@
-import { NgFor } from '@angular/common';
-import { Component } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { DashboardService } from '../dashboard.service';
+import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-employee-list',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, ConfirmationModalComponent, NgIf],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.scss'
 })
-export class EmployeeListComponent {
+export class EmployeeListComponent implements OnInit{
 
-  rows = [
-    { slNo: 1, name: 'John Doe', email: 'john@gmail.com', department: 'HR', dateOfJoining: '19-07-2022' },
-    { slNo: 2, name: 'Jane Smith', email: 'jane@yahoo.com',  department: 'Engineering', dateOfJoining: '15-11-2024' },
-    { slNo: 3, name: 'Robert Brown', email: 'robert@outlook.com',  department: 'Management', dateOfJoining: '24-03-2021' },
-  ];
+  @Input() employeeLists: any = []
+  @Output() editEmployeeEvent = new EventEmitter<any>();
+  @Output() refreshList = new EventEmitter<void>();
+  @Output() deleteEmployee = new EventEmitter<any>()
+  @ViewChild('deleteModal') deleteModal!: ElementRef<HTMLDialogElement>;
+
+  selectedEmployeeId: string | null = null;
 
   columns = [
-    { prop: 'slNo', name: 'Sl No.' },
+    { prop: 'id', name: 'Id' },
     { prop: 'name', name: 'Name' },
     { prop: 'email', name: 'Email' },
     { prop: 'department', name: 'Department' },
     { prop: 'dateofJoining', name: 'Date of joining' },
     { prop: 'actions', name: 'Actions' },
   ];
+
+  constructor(
+    private dashboardService: DashboardService
+  ) { }
+
+  ngOnInit(): void {
+    
+  }
+
+  handleEditemployee(employee: any) {
+    this.editEmployeeEvent.emit(employee); 
+  }
+
+  openDeleteModal(id: any) {
+    this.selectedEmployeeId = id;
+    this.deleteModal.nativeElement.showModal();
+  }
+
+  handleDelete() {
+    if (this.selectedEmployeeId) {
+      this.dashboardService.deleteEmployee(this.selectedEmployeeId);
+      this.selectedEmployeeId = null;
+      this.refreshList.emit(); 
+    }
+    this.deleteModal.nativeElement.close();
+  }
 
 }
