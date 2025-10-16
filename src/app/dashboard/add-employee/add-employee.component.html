@@ -1,1 +1,23 @@
-<p>add-employee works!</p>
+<ng-container>
+    <dialog id="my_modal_3" class="modal">
+        <div class="modal-box">
+            <form method="dialog">
+                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+            <p class="text-bold text-lg mb-3">Add new Employee</p>
+            <form class="mx-5 my-3">
+                <input type="text" placeholder="Name" class="input my-2 w-full" />
+                <input type="text" placeholder="Email" class="input my-2 w-full" />
+                <select class="select my-2 w-full">
+                    <option disabled selected>Select Department</option>
+                    <option>HR</option>
+                    <option>Engineering</option>
+                    <option>Sales</option>
+                    <option>Marketing</option>
+                </select>
+                <input type="date" class="input mt-2 mb-5 w-full" />
+                <button class="btn bg-[#5EBB2B] text-white border-[#4eaa0c] mr-3">Add</button>
+            </form>
+        </div>
+    </dialog>
+</ng-container>

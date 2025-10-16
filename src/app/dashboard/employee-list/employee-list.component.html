@@ -1,1 +1,24 @@
-<p>employee-list works!</p>
+<ng-container>
+    <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th *ngFor="let col of columns">{{col.name}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of rows">
+                    <th>{{row.slNo}}</th>
+                    <td>{{row.name}}</td>
+                    <td>{{row.email}}</td>
+                    <td>{{row.department}}</td>
+                    <td>{{row.dateOfJoining}}</td>
+                    <td>
+                        <button class="btn bg-[#0967C2] text-white border-[#0059b3] btn-xs mr-3">Edit</button>
+                        <button class="btn btn-error text-white btn-xs">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</ng-container>
