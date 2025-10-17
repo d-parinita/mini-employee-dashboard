@@ -1,27 +1,110 @@
-# MiniEmployeeDashboard
+# Mini Employee Dashboard
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.17.
+A modern, responsive employee management dashboard built with Angular 17 and Tailwind CSS with DaisyUI components.
 
-## Development server
+## 🚀 Live Demo
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+**Deployed Application:** [https://mini-employee-dashboard.netlify.app/](https://mini-employee-dashboard.netlify.app/)
 
-## Code scaffolding
+## ✨ Features
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Core Functionality
+- **Employee Management**: Add, view, and delete employees
+- **Department Filtering**: Filter employees by department (HR, Engineering, Sales, Marketing)
+- **Sorting Options**: Sort by name or date of joining
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
 
-## Build
+### 🎁 Bonus Features
+- **📊 CSV Export**: Export employee data to CSV format for external use
+- **🌙 Dark Mode Toggle**: Switch between light and dark themes with a beautiful moon/sun icon toggle
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## 🛠️ Tech Stack
 
-## Running unit tests
+- **Frontend Framework**: Angular 17
+- **Styling**: Tailwind CSS v4 with DaisyUI components
+- **Build Tool**: Angular CLI
+- **Deployment**: Netlify
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 🚀 Getting Started
 
-## Running end-to-end tests
+### Prerequisites
+- Node.js (v18 or higher)
+- npm or yarn package manager
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Installation
 
-## Further help
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd mini-employee-dashboard
+   ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**
+   ```bash
+   npm start
+   ```
+
+4. **Open your browser**
+   Navigate to `http://localhost:4200`
+
+### Build for Production
+
+```bash
+npm run build
+```
+
+## 🎨 UI Components
+
+The application uses DaisyUI components for a clean, modern interface:
+- **Navbar**: Responsive navigation with theme toggle
+- **Tables**: Styled data tables with sorting and filtering
+- **Modals**: Confirmation dialogs for actions
+- **Buttons**: Consistent button styling throughout
+- **Forms**: Clean form inputs and validation
+
+## 🌙 Theme Support
+
+The application includes a sophisticated theme system:
+- **Light Theme**: Clean, bright interface for daytime use
+- **Dark Theme**: Easy-on-the-eyes dark interface for low-light environments
+- **Smooth Transitions**: Animated theme switching with rotating icons
+- **System Preference**: Automatically detects user's system theme preference
+
+## 📊 Data Management
+
+### Employee Data Structure
+```typescript
+interface Employee {
+  id: number;
+  name: string;
+  email: string;
+  department: string;
+  dateOfJoining: string;
+}
+```
+
+### Export Functionality
+- **CSV Export**: Download employee data in CSV format
+- **Filtered Data**: Export respects current filters and sorting
+- **Customizable**: Easy to extend for additional export formats
+
+## 🏗️ Project Structure
+
+```
+src/
+├── app/
+│   ├── dashboard/
+│   │   ├── add-employee/     # Add new employee component
+│   │   ├── employee-list/    # Employee listing component
+│   │   ├── header/           # Navigation header
+│   │   └── dashboard-layout/ # Main layout component
+│   └── app.component.*       # Root component
+├── assets/
+│   └── images/               # Theme toggle icons
+└── styles.css                # Global Tailwind CSS imports
+```
