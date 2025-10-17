@@ -1,4 +1,4 @@
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { DashboardService } from '../dashboard.service';
 import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
@@ -6,7 +6,7 @@ import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-m
 @Component({
   selector: 'app-employee-list',
   standalone: true,
-  imports: [NgFor, ConfirmationModalComponent],
+  imports: [NgFor, ConfirmationModalComponent, NgIf],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.scss'
 })

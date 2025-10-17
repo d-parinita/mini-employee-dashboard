@@ -18,6 +18,7 @@ export class DashboardLayoutComponent implements OnInit{
   searchTerm: string = '';
   filterDept: string = '';
   sortBy: string = '';
+  searchTimeout: any;
 
   constructor(
     private dashboardService: DashboardService
@@ -60,8 +61,12 @@ export class DashboardLayoutComponent implements OnInit{
   }
 
   onSearchChange(event: any) {
-    this.searchTerm = event.target.value;
-    this.handleGetEmployee();
+    const value = event.target.value;
+    clearTimeout(this.searchTimeout);
+    this.searchTimeout = setTimeout(() => {
+      this.searchTerm = value;
+      this.handleGetEmployee();
+    }, 500)
   }
 
   onFilterChange(event: any) {

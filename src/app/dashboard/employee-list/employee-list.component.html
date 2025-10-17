@@ -20,6 +20,7 @@
                 </tr>
             </tbody>
         </table>
+        <div class="text-center my-20" *ngIf="employeeLists?.length === 0">No data available!</div>
     </div>
     <app-confirmation-modal
         #deleteModalComp
