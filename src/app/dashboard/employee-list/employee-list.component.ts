@@ -1,22 +1,22 @@
-import { NgFor, NgIf } from '@angular/common';
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { NgFor } from '@angular/common';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { DashboardService } from '../dashboard.service';
 import { ConfirmationModalComponent } from '../confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-employee-list',
   standalone: true,
-  imports: [NgFor, ConfirmationModalComponent, NgIf],
+  imports: [NgFor, ConfirmationModalComponent],
   templateUrl: './employee-list.component.html',
   styleUrl: './employee-list.component.scss'
 })
-export class EmployeeListComponent implements OnInit{
+export class EmployeeListComponent{
 
   @Input() employeeLists: any = []
   @Output() editEmployeeEvent = new EventEmitter<any>();
   @Output() refreshList = new EventEmitter<void>();
   @Output() deleteEmployee = new EventEmitter<any>()
-  @ViewChild('deleteModal') deleteModal!: ElementRef<HTMLDialogElement>;
+  @ViewChild('deleteModalComp') deleteModalComp!: ConfirmationModalComponent;
 
   selectedEmployeeId: string | null = null;
 
@@ -33,17 +33,13 @@ export class EmployeeListComponent implements OnInit{
     private dashboardService: DashboardService
   ) { }
 
-  ngOnInit(): void {
-    
-  }
-
   handleEditemployee(employee: any) {
     this.editEmployeeEvent.emit(employee); 
   }
 
   openDeleteModal(id: any) {
     this.selectedEmployeeId = id;
-    this.deleteModal.nativeElement.showModal();
+    this.deleteModalComp.openModal();
   }
 
   handleDelete() {
@@ -52,7 +48,6 @@ export class EmployeeListComponent implements OnInit{
       this.selectedEmployeeId = null;
       this.refreshList.emit(); 
     }
-    this.deleteModal.nativeElement.close();
   }
 
 }

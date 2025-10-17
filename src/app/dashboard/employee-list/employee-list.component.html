@@ -14,15 +14,15 @@
                     <td>{{employee.department}}</td>
                     <td>{{employee.dateOfJoining}}</td>
                     <td>
-                        <button onclick="my_modal_3.showModal()" (click)="handleEditemployee(employee)" class="btn bg-[#0967C2] text-white border-[#0059b3] btn-xs mr-3">Edit</button>
-                        <button onclick="my_modal_1.showModal()" (click)="openDeleteModal(employee.id)" class="btn btn-error text-white btn-xs">Delete</button>
+                        <button (click)="handleEditemployee(employee)" class="btn bg-[#0967C2] text-white border-[#0059b3] btn-xs mr-3">Edit</button>
+                        <button (click)="openDeleteModal(employee.id)" class="btn btn-error text-white btn-xs">Delete</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
     <app-confirmation-modal
-        *ngIf="selectedEmployeeId"
+        #deleteModalComp
         (confirmDelete)="handleDelete()"
     ></app-confirmation-modal>
 </ng-container>
