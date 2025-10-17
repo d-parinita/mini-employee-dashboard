@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmployeeListComponent } from '../employee-list/employee-list.component';
 import { AddEmployeeComponent } from '../add-employee/add-employee.component';
 import { DashboardService } from '../dashboard.service';
+import Papa from 'papaparse';
 
 @Component({
   selector: 'app-dashboard-layout',
@@ -77,6 +78,31 @@ export class DashboardLayoutComponent implements OnInit{
   onSortChange(event: any) {
     this.sortBy = event.target.value;
     this.handleGetEmployee();
+  }
+
+  exportToCSV() {
+    if (!this.employeeList || this.employeeList.length === 0) {
+      alert('No data to export!');
+      return;
+    }
+
+    const csvData = this.employeeList.map((emp: any) => ({
+      Id: emp.id,
+      Name: emp.name,
+      Email: emp.email,
+      Department: emp.department,
+      'Date of Joining': emp.dateOfJoining
+    }));
+
+    const csv = Papa.unparse(csvData);
+
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.href = url;
+    link.download = 'employee_data.csv';
+    link.click();
+    URL.revokeObjectURL(url);
   }
 
 }
