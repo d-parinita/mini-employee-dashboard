@@ -17,8 +17,10 @@ export class AppComponent implements OnInit{
       { id: 'AtgPnljeTG', name: 'Jane Smith', email: 'jane@yahoo.com',  department: 'Engineering', dateOfJoining: '15-11-2024' },
       { id: 'eThcvOyWmq', name: 'Robert Brown', email: 'robert@outlook.com',  department: 'Marketing', dateOfJoining: '24-03-2021' },
     ]
-    if (!localStorage.getItem('employees')) {
-      localStorage.setItem('employees', JSON.stringify(data))
+    if (typeof window !== 'undefined') {
+      if (!localStorage.getItem('employees')) {
+        localStorage.setItem('employees', JSON.stringify(data))
+      }
     }
   }
 

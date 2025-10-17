@@ -8,8 +8,10 @@ export class DashboardService {
   constructor() { }
 
   getEmployeeList() {
-    const data = JSON.parse(localStorage.getItem('employees') || '[]')
-    return data
+    if (typeof window !== 'undefined') {
+      const data = JSON.parse(localStorage.getItem('employees') || '[]')
+      return data
+    }
   }
 
   addNewEmployee(payload: any) {
