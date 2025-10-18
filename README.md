@@ -41,12 +41,12 @@ A modern, responsive employee management dashboard built with Angular 17 and Tai
 
 2. **Install dependencies**
    ```bash
-   npm install
+   npm install --force
    ```
 
 3. **Start the development server**
    ```bash
-   npm start
+   ng serve
    ```
 
 4. **Open your browser**
@@ -55,7 +55,7 @@ A modern, responsive employee management dashboard built with Angular 17 and Tai
 ### Build for Production
 
 ```bash
-npm run build
+ng build
 ```
 
 ## 🎨 UI Components
