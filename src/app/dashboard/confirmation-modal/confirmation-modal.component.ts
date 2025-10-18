@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-confirmation-modal',
@@ -9,23 +9,26 @@ import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular
 })
 export class ConfirmationModalComponent {
 
-  @Output() confirmDelete = new EventEmitter<void>();
-  @ViewChild('deleteModal') deleteModal!: ElementRef<HTMLDialogElement>;
+  @Input() conFirmTitle: any = ''
+  @Input() conFirmText: any = ''
+  @Input() btnText: any = ''
+  @Output() confirm = new EventEmitter<void>();
+  @ViewChild('confirmModal') confirmModal!: ElementRef<HTMLDialogElement>;
 
   openModal() {
-    if (this.deleteModal) {
-      this.deleteModal.nativeElement.showModal();
+    if (this.confirmModal) {
+      this.confirmModal.nativeElement.showModal();
     }
   }
 
   closeModal() {
-    if (this.deleteModal && this.deleteModal.nativeElement.open) {
-      this.deleteModal.nativeElement.close();
+    if (this.confirmModal && this.confirmModal.nativeElement.open) {
+      this.confirmModal.nativeElement.close();
     }
   }
 
-  handleDeleteEmployee() {
-    this.confirmDelete.emit();
+  handleConfirmEmployee() {
+    this.confirm.emit();
     this.closeModal()
   }
 

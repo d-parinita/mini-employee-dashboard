@@ -23,7 +23,10 @@
         <div class="text-center my-20" *ngIf="employeeLists?.length === 0">No data available!</div>
     </div>
     <app-confirmation-modal
+        btnText="Delete"
+        conFirmText="Are you sure you want to delete this employee?"
+        conFirmTitle="Delete Confirmation"
         #deleteModalComp
-        (confirmDelete)="handleDelete()"
+        (confirm)="handleDelete()"
     ></app-confirmation-modal>
 </ng-container>
